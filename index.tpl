@@ -12,11 +12,13 @@
 		</style>
 	</head>
 	<body style="margin:50px; font-family:monospace;">
-		<div style="float:left; width:25%">
-			<h1>Installed</h1>
-			{map.vendors::vendor}
+		<div style="float:left; width:25%; background-color:#aaf0d1;">
+			<div style="margin:20px">
+				<h1>Установлено</h1>
+				{map.vendors::vendor}
+			</div>
 		</div>
-		<div style="float:right; width:75%;"><div style="margin-left:40px; margin-right:80px">
+		<div style="float:right; width:75%;"><div style="margin-left:41px; margin-right:80px">
 			<div style="background-color:white; padding:5px; margin-bottom:5px;">
 				<div><b>{namedata.vendor}</b> <b style="color:red">{namedata.name}</b> {namedata.list::file}</div>
 			</div>
@@ -29,7 +31,7 @@
 {vendor:}<h3>{~key}</h3>
 	{::name}
 {name:}{is?:aname?:jname}{~last()??:comma}
-{aname:}<a href="?src=vendor/{vendor}/{~key}/README.md">{~key}</a>
+{aname:}<a href="?src={src}">{~key}</a>
 {jname:}{~key}
 {comma:}, 
 {point:}.

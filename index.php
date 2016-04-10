@@ -21,21 +21,49 @@ $map = Access::cache('mdreader', function () {
 	$map = array('vendors'=>array());
 	$dir = 'vendor/';
 	array_map(function ($file) use (&$map, $dir) {
-		if ($file{0} == '.') return;
+		if ($file == '.') {
+			$dir = '';
+			$file= '.';
+			$vendor = $_SERVER['HTTP_HOST'];
+		} else if ($file{0} == '.') {
+			return;
+		} else {
+			$vendor = Path::toutf($file);
+		}
 		if (!is_dir($dir.$file)) return;
 		$dir = $dir.$file.'/';
-		$vendor = Path::toutf($file);
+		
 
 		if (!$map['vendors'][$vendor]) $map[$vendor] = array();
 
 		array_map(function ($file) use (&$map, $dir, $vendor) {
-			if ($file{0} == '.') return;
+			
 			if (!is_dir($dir.$file)) return;
+			if ($dir == './') {
+				if ($file == '.') {
+					$dir = '';
+					$file= '.';
+					$name = $_SERVER['HTTP_HOST'];
+				} else if ($file{0} == '.') {
+					return;
+				} else {
+					$name = Path::toutf($file);
+				}
+				$sysdir = $dir.$file.'/';
+				if($sysdir == './'.Path::$conf['data']) return;
+				if($sysdir == './'.Path::$conf['cache']) return;
+				if($sysdir == './vendor/') return;
+
+			} else {
+				if ($file{0} == '.') return;
+				$name = Path::toutf($file);
+			}
 			$dir = $dir.$file.'/';
-			$name = Path::toutf($file);
+			
 
 			if (!$map['vendors'][$vendor][$name]) {
 				$map['vendors'][$vendor][$name] = array(
+					'src' => $dir.'README.md',
 					'vendor' => $vendor,
 					'name' => $name,
 					'is' => is_file($dir.'README.md'),
