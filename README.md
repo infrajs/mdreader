@@ -1,4 +1,16 @@
-# Show README.md files from vendor folders
-**Disclaimer:** Module is not complete and not ready for use yet.
+# Показывает README.md файлы установленных расширений через composer
 
-After install open in browser vendor/infrajs/mdreader/
+После установки нужно открыть в браузере **vendor/infrajs/mdreader/**
+
+Будут показаны все установленые расширения в папке **vendor/**.
+Также будут показаны **README.md** файлы в корневых подпапках проекта.
+
+## Установка через composer
+
+```json
+{
+  "require":{
+    "infrajs/mdreader":"~1"
+  }
+}
+```
