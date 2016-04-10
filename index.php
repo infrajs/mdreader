@@ -34,7 +34,7 @@ $map = Access::cache('mdreader', function () {
 		$dir = $dir.$file.'/';
 		
 
-		if (!$map['vendors'][$vendor]) $map[$vendor] = array();
+		if (empty($map['vendors'][$vendor])) $map[$vendor] = array();
 
 		array_map(function ($file) use (&$map, $dir, $vendor) {
 			
@@ -61,7 +61,7 @@ $map = Access::cache('mdreader', function () {
 			$dir = $dir.$file.'/';
 			
 
-			if (!$map['vendors'][$vendor][$name]) {
+			if (empty($map['vendors'][$vendor][$name])) {
 				$map['vendors'][$vendor][$name] = array(
 					'src' => $dir.'README.md',
 					'vendor' => $vendor,
