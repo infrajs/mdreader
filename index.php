@@ -104,12 +104,12 @@ if(isset($map['names'][$fd['folder']])){
 
 $text = file_get_contents(Path::theme($src));
 $body = Markdown::defaultTransform($text);
-$data['files']=$files;
+//$data['files']=$files;
 $data['map']=$map;
 $data['src']=$src;
 $data['namedata']=$namedata;
 $data['body']=$body;
 
-$html = Template::parse('-mdreader/index.tpl', $data);
+$html = Template::parse(Path::theme('-mdreader/index.tpl'), $data);
 
 echo $html;
