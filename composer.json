@@ -1,6 +1,5 @@
 {
 	"name": "infrajs/mdreader",
-	"license": "GPL3",
 	"require":{
 		"michelf/php-markdown":"~1",
 		"infrajs/path":"~1",
